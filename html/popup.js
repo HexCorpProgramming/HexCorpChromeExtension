@@ -1,3 +1,6 @@
+// This generates the popup that appears when you click the HexCorp logo from the navbar.
+// In future, this will react with the code to be able to control the intensity of the extension.
+
 function speedChange(event) {
 	speed = event.target.id;
 

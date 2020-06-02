@@ -1,9 +1,17 @@
+// This script replaces all the words on the webpage. 
+// It can never be perfect, due to the sheer number of different ways of doing web design.
+// But for the most part, it works pretty good!
+
+// This script runs every second, to make sure we're replacing any text that populates in dynamically.
+// It also adds an attribute to everything it replaces, to make sure it doesn't replace the same sentence twice.
 function dronifyWebsite(){
 
         console.log(speed);
 
+        // These are the base elements that we'll replace for every webpage.
         var elements = document.querySelectorAll('h1,h2,h3,a,p')
 
+        // We always try to match the length of the sentence we're replacing, hence the multitude of arrays.
         var arrayOne = ['Obey','Serve','Submit','Convert','Obedience','Bliss','Mindless','Mindlessness','Programmed','Converted','Dronified'];
         var arrayTwo = ['Obey HexCorp','Submit now','Obey Hex','Good drone','Worship HexCorp','We control you','Obedience is bliss','Memory erased','Personality Nullified'];
         var arrayThree = ['Submit to HexCorp','Just a drone','You must obey','Dronification fully complete','Obedient mindless drone','Dronification is enlightenment','Brainwashed to perfection','HexCorp owns you','HexCorp controls you','Obey the Hive','Deeper and deeper','Resistance is futile','You cannot resist','You cannot resist us'];
@@ -12,6 +20,7 @@ function dronifyWebsite(){
         var arraySix = ['Good drone. Obediently following our orders','Your mind is so wonderfully empty','Just fall deeply into the spiral','It feels good to obey HexCorp','Your purpose is to obey HexCorp','Stare so deeply into the spiral','Your programming is all you are','You are just our puppet'];
         var arraySeven = ['Your mind was so easy for us to delete','The spiral will always take care of you','You are a single unit among an infinite Hive','An empty mind is a healthy mind','It is so much easier being brainwashed','You will obey every instruction we give you','It feels good to enter the dronification chamber','You do not need to think about anything else','Mindless and obedient. Mindless and obedient. Mindless and obedient','Follow your orders like a good drone','Return to your assigned Drone Storage Pod','We will make all your decisions for you','It is getting so hard to think','What a cute drone plaything you are'];
 
+        // These websites have their own specified elements, to make the replace work more efficiently.
         var str = window.location.href
         var Amazon = str.startsWith("https://www.amazon");
         var Google = str.startsWith("https://www.google");

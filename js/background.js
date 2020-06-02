@@ -1,3 +1,7 @@
+// This script is doing nothing, but if I remove it the whole thing breaks.
+// It's like that one brick that nobody thinks is important, but the moment it's removed the whole building falls down
+// Please help 
+
 chrome.runtime.onMessage.addListener(function(message, sender, senderResponse){
   if(message.msg === "image"){
     fetch("/spiral.json")
