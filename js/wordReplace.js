@@ -7,7 +7,7 @@
 function dronifyWebsite() {
 
   // These are the base elements that we'll replace for every webpage.
-  var elements = document.querySelectorAll('h1,h2,h3,a,p')
+  let elementSelector = 'h1,h2,h3,a,p';
 
   // We always try to match the length of the sentence we're replacing, hence the multitude of arrays.
   const replacements = [
@@ -21,31 +21,27 @@ function dronifyWebsite() {
   ];
 
   // These websites have their own specified elements, to make the replace work more efficiently.
-  const href = window.location.href;
-  const Amazon = href.startsWith("https://www.amazon");
-  const Google = href.startsWith("https://www.google");
-  const Guardian = href.startsWith("https://www.theguardian");
-  const Twitter = href.startsWith("https://twitter");
-  const Reddit = href.startsWith("https://www.reddit");
-  const Wikipedia = href.startsWith("https://en.wikipedia");
-  if (Amazon) {
-    elements = document.querySelectorAll('h1,h2,h3,a,p,span')
+  const host = window.location.host;
+  if (host.startsWith("www.amazon")) {
+    elementSelector = 'h1,h2,h3,a,p,span';
   }
-  if (Google) {
-    elements = document.querySelectorAll('h1,h2,h3,a,p,span,em')
+  if (host.startsWith("www.google")) {
+    elementSelector = 'h1,h2,h3,a,p,span,em';
   }
-  if (Guardian) {
-    elements = document.querySelectorAll('h1,h2,h3,a,p,span')
+  if (host.startsWith("www.theguardian")) {
+    elementSelector = 'h1,h2,h3,a,p,span';
   }
-  if (Twitter) {
-    elements = document.querySelectorAll('h1,h2,h3,a,p,span')
+  if (host.startsWith("twitter")) {
+    elementSelector = 'h1,h2,h3,a,p,span';
   }
-  if (Reddit) {
-    elements = document.querySelectorAll('h1,h2,h3,a,p')
+  if (host.startsWith("www.reddit")) {
+    elementSelector = 'h1,h2,h3,a,p';
   }
-  if (Wikipedia) {
-    elements = document.querySelectorAll('h1,h2,h3,a,p,i,b,ul,li')
+  if (host.startsWith("en.wikipedia")) {
+    elementSelector = 'h1,h2,h3,a,p,i,b,ul,li';
   }
+
+  const elements = document.querySelectorAll(elementSelector);
   for (let i = 0; i < elements.length; i++) {
     const element = elements[i];
 
@@ -62,6 +58,7 @@ function dronifyWebsite() {
           const wordCount = sentence.split(" ").length;
 
           if (wordCount == 0) {
+            continue;
           } else if (wordCount > replacements.length - 1) {
             sentence = replacements[6][Math.floor(Math.random() * replacements[replacements.length - 1].length)];
           } else {
