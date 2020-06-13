@@ -1,7 +1,7 @@
 // This script is designed to go over the webpage and find any images, replacing them with HexCorp ones
 
 // Our HexCorp spirals
-var imageArray = ['https://images.squarespace-cdn.com/content/v1/5cd68fb28dfc8ce502f14199/1569699441708-NWA2MWJLGWI3NZYTYHHI/ke17ZwdGBToddI8pDm48kHTW22EZ3GgW4oVLBBkxXg1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpwEg94W6zd8FBNj5MCw-Ij7INTc0XdOQR2FYhNzGmPXJN9--qDehzI3YAaYB5CQ-LA/hexcorpspiral2.gif?format=750w',
+const imageArray = ['https://images.squarespace-cdn.com/content/v1/5cd68fb28dfc8ce502f14199/1569699441708-NWA2MWJLGWI3NZYTYHHI/ke17ZwdGBToddI8pDm48kHTW22EZ3GgW4oVLBBkxXg1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpwEg94W6zd8FBNj5MCw-Ij7INTc0XdOQR2FYhNzGmPXJN9--qDehzI3YAaYB5CQ-LA/hexcorpspiral2.gif?format=750w',
   'https://images.squarespace-cdn.com/content/v1/5cd68fb28dfc8ce502f14199/1569711588098-2HSVWEQ33K3FMDJ3FDJI/ke17ZwdGBToddI8pDm48kHTW22EZ3GgW4oVLBBkxXg1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpwEg94W6zd8FBNj5MCw-Ij7INTc0XdOQR2FYhNzGmPXJN9--qDehzI3YAaYB5CQ-LA/DRONEGIF.gif?format=750w',
   'https://images.squarespace-cdn.com/content/v1/5cd68fb28dfc8ce502f14199/1569711635147-90B6U28OSD7F05XECYCY/ke17ZwdGBToddI8pDm48kHTW22EZ3GgW4oVLBBkxXg1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpwEg94W6zd8FBNj5MCw-Ij7INTc0XdOQR2FYhNzGmPXJN9--qDehzI3YAaYB5CQ-LA/CONVERTGIF.gif?format=750w',
   'https://images.squarespace-cdn.com/content/v1/5cd68fb28dfc8ce502f14199/1569711663505-8PRAFZCVQIE1MD475L4I/ke17ZwdGBToddI8pDm48kHTW22EZ3GgW4oVLBBkxXg1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpwEg94W6zd8FBNj5MCw-Ij7INTc0XdOQR2FYhNzGmPXJN9--qDehzI3YAaYB5CQ-LA/HEXCORPGIF.gif?format=750w',
@@ -17,8 +17,7 @@ var imageArray = ['https://images.squarespace-cdn.com/content/v1/5cd68fb28dfc8ce
 function dronifyImages() {
   let images = document.querySelectorAll('img,source,media');
   for (let i = 0; i < images.length; i++) {
-    var hexcorpchecker = images[i].hasAttribute("heximageacheck");
-    if (!hexcorpchecker) {
+    if (!images[i].hasAttribute("heximageacheck")) {
       images[i].src = imageArray[Math.floor(Math.random() * imageArray.length)];
       images[i].srcset = imageArray[Math.floor(Math.random() * imageArray.length)];
       images[i].setAttribute("heximageacheck", "hexcorpstamp");
