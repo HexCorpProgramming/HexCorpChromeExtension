@@ -3,6 +3,6 @@
 
 const all = document.getElementsByTagName("*");
 
-for (let i=0; i < all.length; i++) {
- all[i].style.color = "purple";
+for (let i = 0; i < all.length; i++) {
+  all[i].style.color = "purple";
 }

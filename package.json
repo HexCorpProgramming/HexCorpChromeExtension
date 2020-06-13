@@ -13,7 +13,7 @@
   "homepage": "https://github.com/HexCorpProgramming/HexCorpChromeExtension",
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick"
+      "pre-commit": "pretty-quick --staged"
     }
   },
   "devDependencies": {
