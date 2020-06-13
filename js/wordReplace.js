@@ -6,8 +6,6 @@
 // It also adds an attribute to everything it replaces, to make sure it doesn't replace the same sentence twice.
 function dronifyWebsite(){
 
-        console.log(speed);
-
         // These are the base elements that we'll replace for every webpage.
         var elements = document.querySelectorAll('h1,h2,h3,a,p')
 
