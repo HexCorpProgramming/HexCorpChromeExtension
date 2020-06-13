@@ -1,8 +1,8 @@
 // This is pretty simple in terms of what it's doing
 // But what if it was purple?
 
-var all = document.getElementsByTagName("*");
+const all = document.getElementsByTagName("*");
 
-for (var i=0, max=all.length; i < max; i++) {
+for (let i=0; i < all.length; i++) {
  all[i].style.color = "purple";
 }
