@@ -150,7 +150,7 @@ function dronifyWebsite() {
         const text = node.nodeValue;
         const textSentences = text.split(".");
 
-        for (var k = 0; k < textSentences.length; k++) {
+        for (let k = 0; k < textSentences.length; k++) {
           let sentence = textSentences[k];
           const wordCount = sentence.split(" ").length;
 
