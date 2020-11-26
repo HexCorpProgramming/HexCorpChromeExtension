@@ -1,4 +1,23 @@
-// Currently, this isn't doing anything. The plan will be for this file to interact with the pop-up.
+console.log("controller online");
 
-var speed = "off";
-console.log(speed);
+const OFF = "off";
+const SLOW = "slow";
+const MEDIUM = "medium";
+const FAST = "fast";
+const INSTANT = "instant";
+const PASSIVE = "passive";
+
+let speed = OFF;
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  let response = {};
+
+  if (request.setSpeed) {
+    speed = request.setSpeed;
+  }
+  if (request.getSpeed) {
+    response.speed = speed;
+  }
+
+  sendResponse(response);
+});
