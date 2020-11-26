@@ -13,3 +13,8 @@ function updateSpeed() {
     speed = response.speed;
   });
 }
+
+function getSpeed() {
+  updateSpeed();
+  return speed;
+}

@@ -17,8 +17,7 @@ const imageArray = [
 // There's an extra trick where we're adding an attribute to the images as a sort of stamp.
 // This let's the code know that the image has already been replaced, so that it doesn't constantly change the same image over and over.
 function dronifyImages() {
-  updateSpeed();
-  if (speed !== OFF) {
+  if (getSpeed() !== OFF) {
     let images = document.querySelectorAll("img,source,media");
     for (let i = 0; i < images.length; i++) {
       if (!images[i].hasAttribute("heximageacheck")) {

@@ -111,17 +111,10 @@ const replacements = [
   ],
 ];
 
-function updateSpeed() {
-  chrome.runtime.sendMessage({ getSpeed: true }, function (response) {
-    speed = response.speed;
-  });
-}
-
 // This script runs every second, to make sure we're replacing any text that populates in dynamically.
 // It also adds an attribute to everything it replaces, to make sure it doesn't replace the same sentence twice.
 function dronifyWebsite() {
-  updateSpeed();
-  if (speed !== OFF) {
+  if (getSpeed() !== OFF) {
     // These are the base elements that we'll replace for every webpage.
     let elementSelector = "h1,h2,h3,a,p";
 

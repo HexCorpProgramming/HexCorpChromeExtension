@@ -2,8 +2,7 @@
 // But what if it was purple?
 
 function changeColour() {
-  updateSpeed();
-  if (speed !== OFF) {
+  if (getSpeed() !== OFF) {
     const all = document.getElementsByTagName("*");
 
     for (let i = 0; i < all.length; i++) {
