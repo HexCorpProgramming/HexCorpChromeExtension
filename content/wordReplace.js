@@ -2,16 +2,6 @@
 // It can never be perfect, due to the sheer number of different ways of doing web design.
 // But for the most part, it works pretty good!
 
-// speeds
-const OFF = "off";
-const SLOW = "slow";
-const MEDIUM = "medium";
-const FAST = "fast";
-const PASSIVE = "passive";
-const PERMANENT = "permanent";
-
-let speed = OFF;
-
 // We always try to match the length of the sentence we're replacing, hence the multitude of arrays.
 const replacements = [
   [

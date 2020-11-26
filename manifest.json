@@ -12,6 +12,7 @@
       "matches": ["<all_urls>"],
       "all_frames": true,
       "js": [
+        "content/speed.js",
         "content/contentScript.js",
         "content/wordReplace.js",
         "content/colourChanger.js"

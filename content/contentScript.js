@@ -17,13 +17,17 @@ const imageArray = [
 // There's an extra trick where we're adding an attribute to the images as a sort of stamp.
 // This let's the code know that the image has already been replaced, so that it doesn't constantly change the same image over and over.
 function dronifyImages() {
-  let images = document.querySelectorAll("img,source,media");
-  for (let i = 0; i < images.length; i++) {
-    if (!images[i].hasAttribute("heximageacheck")) {
-      images[i].src = imageArray[Math.floor(Math.random() * imageArray.length)];
-      images[i].srcset =
-        imageArray[Math.floor(Math.random() * imageArray.length)];
-      images[i].setAttribute("heximageacheck", "hexcorpstamp");
+  updateSpeed();
+  if (speed !== OFF) {
+    let images = document.querySelectorAll("img,source,media");
+    for (let i = 0; i < images.length; i++) {
+      if (!images[i].hasAttribute("heximageacheck")) {
+        images[i].src =
+          imageArray[Math.floor(Math.random() * imageArray.length)];
+        images[i].srcset =
+          imageArray[Math.floor(Math.random() * imageArray.length)];
+        images[i].setAttribute("heximageacheck", "hexcorpstamp");
+      }
     }
   }
   setTimeout(dronifyImages, 1000);
