@@ -4,6 +4,7 @@ const SLOW = "slow";
 const MEDIUM = "medium";
 const FAST = "fast";
 const PASSIVE = "passive";
+const INSTANT = "instant";
 const PERMANENT = "permanent";
 
 let speed = OFF;
@@ -21,6 +22,8 @@ function getSpeed() {
 
 function getCutoff(speed) {
   switch (speed) {
+    case INSTANT:
+      return 0;
     case FAST:
       return 0.9;
     case PERMANENT:
