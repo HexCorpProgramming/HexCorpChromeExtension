@@ -18,3 +18,17 @@ function getSpeed() {
   updateSpeed();
   return speed;
 }
+
+function getCutoff(speed) {
+  switch (speed) {
+    case FAST:
+      return 0.9;
+    case PERMANENT:
+    case MEDIUM:
+      return 0.99;
+    case SLOW:
+      return 0.999;
+    default:
+      return 1;
+  }
+}

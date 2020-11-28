@@ -111,10 +111,36 @@ const replacements = [
   ],
 ];
 
+function alterSentences(sentences) {
+  for (let k = 0; k < sentences.length; k++) {
+    let sentence = sentences[k];
+    const wordCount = sentence.split(" ").length;
+
+    if (wordCount == 0) {
+      continue;
+    } else if (wordCount > replacements.length - 1) {
+      sentence =
+        replacements[6][
+          Math.floor(
+            Math.random() * replacements[replacements.length - 1].length
+          )
+        ];
+    } else {
+      sentence =
+        replacements[wordCount][
+          Math.floor(Math.random() * replacements[wordCount].length)
+        ];
+    }
+
+    sentences[k] = sentence + ". ";
+  }
+}
+
 // This script runs every second, to make sure we're replacing any text that populates in dynamically.
 // It also adds an attribute to everything it replaces, to make sure it doesn't replace the same sentence twice.
 function dronifyWebsite() {
-  if (getSpeed() !== OFF) {
+  const currentSpeed = getSpeed();
+  if (currentSpeed !== OFF) {
     // These are the base elements that we'll replace for every webpage.
     let elementSelector = "h1,h2,h3,a,p";
 
@@ -147,34 +173,16 @@ function dronifyWebsite() {
         const node = element.childNodes[j];
 
         if (node.nodeType === Node.TEXT_NODE) {
-          node.nodeValue.replace(",", "");
-          const text = node.nodeValue;
-          const textSentences = text.split(".");
+          if (
+            !element.hasAttribute("hexcheck") &&
+            Math.random() > getCutoff(currentSpeed)
+          ) {
+            node.nodeValue.replace(",", "");
+            const text = node.nodeValue;
+            const textSentences = text.split(".");
 
-          for (let k = 0; k < textSentences.length; k++) {
-            let sentence = textSentences[k];
-            const wordCount = sentence.split(" ").length;
+            alterSentences(textSentences);
 
-            if (wordCount == 0) {
-              continue;
-            } else if (wordCount > replacements.length - 1) {
-              sentence =
-                replacements[6][
-                  Math.floor(
-                    Math.random() * replacements[replacements.length - 1].length
-                  )
-                ];
-            } else {
-              sentence =
-                replacements[wordCount][
-                  Math.floor(Math.random() * replacements[wordCount].length)
-                ];
-            }
-
-            textSentences[k] = sentence + ". ";
-          }
-
-          if (!element.hasAttribute("hexcheck")) {
             const convertedText = textSentences.toString();
             const alteredText = convertedText.replace(/,/g, " ");
             element.replaceChild(document.createTextNode(alteredText), node);
