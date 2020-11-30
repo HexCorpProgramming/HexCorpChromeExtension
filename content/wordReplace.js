@@ -136,6 +136,24 @@ function alterSentences(sentences) {
   }
 }
 
+function addSentences(sentences) {
+  const modifiedSentences = [];
+  sentences.forEach((sentence) => {
+    modifiedSentences.push(sentence + ". ");
+
+    if (Math.random() > 0.1) {
+      const toAddLength = Math.floor(Math.random() * replacements.length);
+      const toAdd =
+        replacements[toAddLength][
+          Math.floor(Math.random() * replacements[toAddLength].length)
+        ];
+      modifiedSentences.push(toAdd + ". ");
+    }
+  });
+
+  return modifiedSentences;
+}
+
 // This script runs every second, to make sure we're replacing any text that populates in dynamically.
 // It also adds an attribute to everything it replaces, to make sure it doesn't replace the same sentence twice.
 function dronifyWebsite() {
@@ -172,19 +190,28 @@ function dronifyWebsite() {
       for (let j = 0; j < element.childNodes.length; j++) {
         const node = element.childNodes[j];
 
-        if (node.nodeType === Node.TEXT_NODE) {
+        if (
+          node.nodeType === Node.TEXT_NODE &&
+          !element.hasAttribute("hexcheck")
+        ) {
+          const changeRandom = Math.random();
           if (
-            !element.hasAttribute("hexcheck") &&
-            Math.random() > getCutoff(currentSpeed)
+            currentSpeed === PASSIVE &&
+            changeRandom > getCutoff(currentSpeed)
           ) {
+            const text = node.nodeValue;
+            const textSentences = text.split(".");
+
+            const alteredText = addSentences(textSentences).join(" ");
+            element.replaceChild(document.createTextNode(alteredText), node);
+            element.setAttribute("hexcheck", "hexcorpstamp");
+          } else if (changeRandom > getCutoff(currentSpeed)) {
             node.nodeValue.replace(",", "");
             const text = node.nodeValue;
             const textSentences = text.split(".");
 
             alterSentences(textSentences);
-
-            const convertedText = textSentences.toString();
-            const alteredText = convertedText.replace(/,/g, " ");
+            const alteredText = textSentences.join(" ");
             element.replaceChild(document.createTextNode(alteredText), node);
             element.setAttribute("hexcheck", "hexcorpstamp");
           }

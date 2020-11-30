@@ -18,7 +18,7 @@ const imageArray = [
 // This let's the code know that the image has already been replaced, so that it doesn't constantly change the same image over and over.
 function dronifyImages() {
   const currentSpeed = getSpeed();
-  if (currentSpeed !== OFF) {
+  if (currentSpeed !== OFF && currentSpeed !== PASSIVE) {
     let images = document.querySelectorAll("img,source,media");
     for (let i = 0; i < images.length; i++) {
       if (

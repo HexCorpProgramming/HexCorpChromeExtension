@@ -29,6 +29,7 @@ function getCutoff(speed) {
     case PERMANENT:
     case MEDIUM:
       return 0.99;
+    case PASSIVE:
     case SLOW:
       return 0.999;
     default:
