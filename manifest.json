@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "HexCorp Launcher",
   "description": "HexCorp Subliminals insertion",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "icons": {
     "128": "icon_128.png"
   },
