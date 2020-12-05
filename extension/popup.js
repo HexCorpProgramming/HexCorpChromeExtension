@@ -12,12 +12,6 @@ let speed = OFF;
 
 function speedChange(event) {
   speed = event.target.id;
-
-  chrome.runtime.sendMessage({ setSpeed: speed }, function (response) {
-    console.log(response.farewell);
-  });
-
-  document.getElementById(speed).style.backgroundcolor = "red";
 }
 
 document.getElementById(OFF).addEventListener("click", speedChange);
