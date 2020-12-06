@@ -12,6 +12,8 @@ let speed = OFF;
 
 function speedChange(event) {
   speed = event.target.id;
+
+  chrome.runtime.sendMessage({ setSpeed: speed });
 }
 
 document.getElementById(OFF).addEventListener("click", speedChange);
