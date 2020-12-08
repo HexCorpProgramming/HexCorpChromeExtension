@@ -20,5 +20,9 @@
     "husky": "^4.2.5",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1"
+  },
+  "scripts": {
+    "firefox-build": "zip -r -FS ../HexCorpExtension.xpi * --exclude '*.git*' 'package*' '*node_modules*'",
+    "chrome-build": "zip -r -FS ../HexCorpExtension.zip * --exclude '*.git*' 'package*' '*node_modules*'"
   }
 }
