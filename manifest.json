@@ -11,6 +11,7 @@
       "matches": ["<all_urls>"],
       "all_frames": true,
       "js": [
+        "extension/constants.js",
         "content/speed.js",
         "content/contentScript.js",
         "content/wordReplace.js",
@@ -20,7 +21,7 @@
     }
   ],
   "background": {
-    "scripts": ["background/controller.js"],
+    "scripts": ["extension/constants.js", "background/controller.js"],
     "persistent": false
   },
   "browser_action": {
