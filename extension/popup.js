@@ -1,8 +1,8 @@
 // This generates the popup that appears when you click the HexCorp logo from the navbar.
 // In future, this will react with the code to be able to control the intensity of the extension.
 
-// buttons ids
-const SPEEDS = ["off", "slow", "medium", "fast", "instant", "passive"];
+// speed buttons id (convenience)
+const SPEEDS = [OFF, SLOW, MEDIUM, FAST, INSTANT, PASSIVE];
 
 function refreshUI() {
   chrome.runtime.sendMessage({ getSpeed: true }, function (response) {
