@@ -1,24 +1,35 @@
 // This generates the popup that appears when you click the HexCorp logo from the navbar.
 // In future, this will react with the code to be able to control the intensity of the extension.
 
-const OFF = "off";
-const SLOW = "slow";
-const MEDIUM = "medium";
-const FAST = "fast";
-const INSTANT = "instant";
-const PASSIVE = "passive";
+// buttons ids
+const SPEEDS = ["off", "slow", "medium", "fast", "instant", "passive"];
 
-let speed = OFF;
+function refreshUI() {
+  chrome.runtime.sendMessage({ getSpeed: true }, function (response) {
+    speed = response.speed;
+    console.log("Current speed = " + speed);
+
+    // clear all active
+    SPEEDS.forEach(
+      (element) => (document.getElementById(element).className -= " active")
+    );
+    // renders the current button properly
+    document.getElementById(speed).className += " active";
+  });
+}
 
 function speedChange(event) {
   speed = event.target.id;
-
+  console.log("speedChange - speed = " + speed);
   chrome.runtime.sendMessage({ setSpeed: speed });
+
+  refreshUI();
 }
 
-document.getElementById(OFF).addEventListener("click", speedChange);
-document.getElementById(SLOW).addEventListener("click", speedChange);
-document.getElementById(MEDIUM).addEventListener("click", speedChange);
-document.getElementById(FAST).addEventListener("click", speedChange);
-document.getElementById(INSTANT).addEventListener("click", speedChange);
-document.getElementById(PASSIVE).addEventListener("click", speedChange);
+// listeners on click -> change the speed
+SPEEDS.forEach((element) =>
+  document.getElementById(element).addEventListener("click", speedChange)
+);
+
+// at load, update the UI accordingly
+refreshUI();
